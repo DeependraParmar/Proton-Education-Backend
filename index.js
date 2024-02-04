@@ -95,7 +95,6 @@ const verifyOtpZodSchema = zod.object({
     email: zod.string().email(),
     otp: zod.number().min(100000).max(999999),
 });
-
 app.post("/verifyotp", async(req,res,next) => {
     try{
         const {success} = verifyOtpZodSchema.safeParse(req.body);
