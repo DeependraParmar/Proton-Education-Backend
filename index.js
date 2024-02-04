@@ -13,7 +13,7 @@ config({
 
 
 app.use(cors({
-    origin: "https://protoneducation.vercel.app"
+    origin: [process.env.FRONTEND_URI_1, process.env.FRONTEND_URI_2]
 }
 ));
 
