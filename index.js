@@ -67,6 +67,7 @@ app.post("/sendmail", async(req,res,next) => {
 
         let mailOptions = {
             to: email,
+            from: `Proton Education <${process.env.MY_MAIL}> `,
             subject: "OTP for Proton Education",
             html: emailTemplate,
         }
