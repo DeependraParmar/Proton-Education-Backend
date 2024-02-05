@@ -13,10 +13,9 @@ config({
 
 
 app.use(cors({
-    origin: "https://protoneducation.vercel.app/",
-    credentials: true,
-    secure: true,
-}));
+    origin: [process.env.FRONTEND_URI_1, process.env.FRONTEND_URI_2]
+}
+));
 
 
 app.use(express.json());
@@ -68,6 +67,7 @@ app.post("/sendmail", async(req,res,next) => {
 
         let mailOptions = {
             to: email,
+            from: `Proton Education <${process.env.MY_MAIL}> `,
             subject: "OTP for Proton Education",
             html: emailTemplate,
         }
