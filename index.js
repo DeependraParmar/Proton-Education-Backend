@@ -98,6 +98,7 @@ const verifyOtpZodSchema = zod.object({
 app.post("/verifyotp", async(req,res,next) => {
     try{
         const {success} = verifyOtpZodSchema.safeParse(req.body);
+
         if(!success){
             return res.status(400).json({
                 success: false,
@@ -112,6 +113,13 @@ app.post("/verifyotp", async(req,res,next) => {
             return res.status(400).json({
                 success: false,
                 message: "Invalid email",
+            });
+        }
+
+        if(userData.otp !== otp){
+            return res.status(400).json({
+                success: false,
+                message: "Invalid OTP",
             });
         }
 
@@ -137,12 +145,6 @@ app.post("/verifyotp", async(req,res,next) => {
             res.status(200).json({
                 success: true,
                 message: "We successfully received your query. We will contact you soon.",
-            });
-        }
-        else{
-            res.status(400).json({
-                success: false,
-                message: "Invalid OTP",
             });
         }
     }
