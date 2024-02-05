@@ -110,7 +110,7 @@ app.post("/verifyotp", async(req,res,next) => {
         const userData = temporaryData[email];
 
         if(!userData){
-            return res.status(400).json({
+            return res.status(404).json({
                 success: false,
                 message: "Invalid email",
             });
