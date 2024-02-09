@@ -38,7 +38,7 @@ let temporaryData = {};
 const sendMailZodSchema = zod.object({
     name: zod.string(),
     email: zod.string().email(),
-    phoneNumber: zod.number().min(1000000000).max(9999999999),
+    phoneNumber: zod.number().min(6000000000).max(9999999999),
     message: zod.string(),
 });
 app.post("/sendmail", async(req,res,next) => {
